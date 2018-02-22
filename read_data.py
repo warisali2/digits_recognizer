@@ -32,11 +32,8 @@ def read(dataset = "training", path = "."):
         magic, num, rows, cols = struct.unpack(">IIII", fimg.read(16))
         img = np.fromfile(fimg, dtype=np.uint8).reshape(len(lbl), rows, cols)
 
-    get_img = lambda idx: (lbl[idx], img[idx])
-
-    # Create an iterator which returns each image in turn
-    for i in xrange(len(lbl)):
-        yield get_img(i)
+    # Return labels and images
+    return lbl, img
 
 def show(image):
     """
