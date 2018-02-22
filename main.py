@@ -15,21 +15,23 @@ features_test = features_test.reshape((nsamples,nx*ny))
 # NaiveBayes Model
 from sklearn.naive_bayes import GaussianNB
 
-clf = GaussianNB()
+clf_nb = GaussianNB()
 
-clf.fit(features_train, features_labels)
+clf_nb.fit(features_train, features_labels)
 
-labels_pred = clf.predict(features_test)
-
-from sklearn.metrics import accuracy_score
-
-print("NB: ", accuracy_score(labels_test, labels_pred))
+labels_pred_nb = clf.predict(features_test)
 
 # SVM
 from sklearn.svm import SVC
 
-clf = SVC(kernel='rbf')
+clf_svm = SVC(kernel='rbf')
 
-clf.fit(features_train, features_labels)
+clf_svm.fit(features_train, features_labels)
 
-labels_pred = clf.predict(features_test)
+labels_pred_svm = clf.predict(features_test)
+
+# Measuring accuracy
+from sklearn.metrics import accuracy_score
+
+print("NB: ", accuracy_score(labels_test, labels_pred_nb))
+print("SVM: ", accuracy_score(labels_test, labels_pred_svm))
