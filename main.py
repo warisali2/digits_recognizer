@@ -24,3 +24,12 @@ labels_pred = clf.predict(features_test)
 from sklearn.metrics import accuracy_score
 
 print("NB: ", accuracy_score(labels_test, labels_pred))
+
+# SVM
+from sklearn.svm import SVC
+
+clf = SVC(kernel='rbf')
+
+clf.fit(features_train, features_labels)
+
+labels_pred = clf.predict(features_test)
