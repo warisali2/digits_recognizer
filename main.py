@@ -3,6 +3,15 @@ from read_data import read, show
 features_labels, features_train = read(dataset="training")
 labels_test, features_test = read(dataset="testing")
 
+# Reshaping features_train and features_test as sklearn
+# requires 2D array in fit()
+
+nsamples, nx, ny = features_train.shape
+features_train = features_train.reshape((nsamples,nx*ny))
+
+nsamples, nx, ny = features_test.shape
+features_test = features_test.reshape((nsamples,nx*ny))
+
 from sklearn.naive_bayes import GaussianNB
 
 clf = GaussianNB()
